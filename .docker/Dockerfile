@@ -16,11 +16,11 @@ WORKDIR /app
 # Clone the app branch into the working directory
 RUN git clone --single-branch --branch app https://github.com/AttackOnTyler/test-cicd-pipeline-node.git .
 
+# Install producion dependencies
+RUN npm install 
+
 # Set environment to production
 ENV NODE_ENV=production
-
-# Install producion dependencies
-RUN npm install --production
 
 RUN mkdir -p /home/node/.config/nvim
 
