@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: 'app'
+    command: bash -c "npm run dev"
+    ports: "3030:3030"
