@@ -7,3 +7,5 @@ services:
     command: bash -c "npm run dev"
     ports: 
       - "3030:3030"
+    volumes:
+      - /home/attackontyler/.config/nvim:/home/node/.config/nvim
