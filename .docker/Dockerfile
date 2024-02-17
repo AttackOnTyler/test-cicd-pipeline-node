@@ -24,12 +24,10 @@ RUN npm install --production
 
 RUN mkdir -p /home/node/.config/nvim
 
+RUN git clone https://github.com/AttackOnTyler/nvim-config.git /home/node/.config/nvim
+
 # Set the user to 'node'
 USER node
-
-RUN mkdir -p /home/node/.config/nvim
-
-RUN git clone https://github.com/AttackOnTyler/nvim-config.git /home/node/.config/nvim
 
 # Stage 2: Final Stage
 FROM node:hydrogen-bookworm-slim
@@ -42,6 +40,8 @@ COPY --from=NodeBuild /app /app
 
 # Copy Neovim from the NodeBuild Stage
 COPY --from=NodeBuild /squashfs-root /
+
+RUN rm -f /usr/bin/nvim
 
 # Expose Neovim globally
 RUN ln -s /AppRun /usr/bin/nvim
