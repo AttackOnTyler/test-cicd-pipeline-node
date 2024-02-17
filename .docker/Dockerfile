@@ -2,8 +2,8 @@
 FROM node:hydrogen-bookworm AS NodeBuild
 
 # Install git
-RUN apt-git update && \
-    apt-git install -y git
+RUN apt-get update && \
+    apt-get install -y git
 
 # Download and install Neovim AppImage
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
@@ -20,13 +20,22 @@ RUN git clone --single-branch --branch app https://github.com/AttackOnTyler/test
 ENV NODE_ENV=production
 
 # Install producion dependencies
-RUN npm ci --production
+RUN npm install --production
+
+RUN mkdir -p /home/node/.config/nvim
+
+# Set the user to 'node'
+USER node
+
+RUN mkdir -p /home/node/.config/nvim
+
+RUN git clone https://github.com/AttackOnTyler/nvim-config.git /home/node/.config/nvim
 
 # Stage 2: Final Stage
 FROM node:hydrogen-bookworm-slim
 
 # Copy the Neovim configuration from the local machine
-COPY --chown=node:node ~/.config/nvim ~/.config/nvim
+COPY --from=NodeBuild /home/node/.config/nvim /home/node/.config/nvim
 
 # Copy the built app files from the NodeBuild Stage
 COPY --from=NodeBuild /app /app
