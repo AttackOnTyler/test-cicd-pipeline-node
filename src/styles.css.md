@@ -1,0 +1,37 @@
+# Purpose
+
+
+
+# Syntax
+
+
+
+# Description
+
+
+
+# Flags
+
+
+
+# Exit Status
+
+
+
+# Examples
+
+```
+/*
+
+This CSS file will be included with your plugin, and
+available in the app when your plugin is enabled.
+
+If your plugin does not need CSS, delete this file.
+
+*/
+```
+
+# Files
+
+
+

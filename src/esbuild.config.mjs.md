@@ -1,3 +1,26 @@
+# Purpose
+
+
+
+# Syntax
+
+
+
+# Description
+
+
+
+# Flags
+
+
+
+# Exit Status
+
+
+
+# Examples
+
+```
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
@@ -48,3 +71,6 @@ if (prod) {
 }```
 
 # Files
+
+
+
