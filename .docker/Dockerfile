@@ -19,15 +19,17 @@ RUN git clone --single-branch --branch app https://github.com/AttackOnTyler/test
 # Set environment to production
 ENV NODE_ENV=production
 
-# Install production dependencies
+# Install producion dependencies
 RUN npm install --production
 
 RUN mkdir -p /home/node/.config/nvim
 
-RUN git clone https://github.com/AttackOnTyler/nvim-config.git /home/node/.config/nvim
-
 # Set the user to 'node'
 USER node
+
+RUN mkdir -p /home/node/.config/nvim
+
+RUN git clone https://github.com/AttackOnTyler/nvim-config.git /home/node/.config/nvim
 
 # Stage 2: Final Stage
 FROM node:hydrogen-bookworm-slim
